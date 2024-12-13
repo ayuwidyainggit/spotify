@@ -9,6 +9,7 @@ import { PiBellSimple } from "react-icons/pi";
 import { TbUsersGroup } from "react-icons/tb";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
+import Link from "next/link";
 
 export async function getServerSideProps() {
   try {
@@ -41,14 +42,16 @@ export default function Layout({ children, data }) {
             className="  w-[50px] h-[50px]  rounded-full p-2  flex items-center justify-center "
             style={{ backgroundColor: "rgba(108, 117, 125, 0.5)" }}
           >
-            <GrHomeRounded
-              style={{
-                width: "28px",
-                height: "20px",
-                display: "relative",
-                color: "white",
-              }}
-            />
+            <Link href="/">
+              <GrHomeRounded
+                style={{
+                  width: "28px",
+                  height: "20px",
+                  display: "relative",
+                  color: "white",
+                }}
+              />
+            </Link>
           </div>
           <div
             className=" rounded-full w-[5000px] h-[50px] flex items-center px-2 gap-2 relative"
