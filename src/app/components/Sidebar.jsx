@@ -19,10 +19,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 const Sidebar = () => {
   const { data, error, isLoading } = useSWR("/api/related-artist", fetcher);
 
-  console.log("first", data);
-
-  // if (isLoading) return <p>Loading...</p>;
-  // if (error) return <p>Error fetching related artists.</p>;
   return (
     <div
       className=" col-span-3  text-white p-4 mt-2 h-screen overflow-y-scroll "
@@ -92,31 +88,35 @@ const Sidebar = () => {
         </div>
       </Link>
       {/* list  */}
+
       <div className=" ">
         {data?.map((data, index) => (
-          <div
-            key={index}
-            className=" mt-4 flex gap-4 hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md"
-          >
-            <Image
-              alt="artist"
-              src={data.image}
-              width={50}
-              height={50}
-              style={{
-                borderRadius: "50%",
-                objectFit: "cover",
-                width: "50px",
-                height: "50px",
-              }}
-            />
-            <div className="">
-              <p className=" font-medium">{data.artist}</p>
-              <p className=" font-thin text-sm text-gray-400">Artist</p>
+          <Link href={`/artistDetail/${data.id}`} key={index}>
+            <div
+              key={index}
+              className=" mt-4 flex gap-4 hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md"
+            >
+              <Image
+                alt="artist"
+                src={data.image}
+                width={50}
+                height={50}
+                style={{
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  width: "50px",
+                  height: "50px",
+                }}
+              />
+              <div className="">
+                <p className=" font-medium">{data.artist}</p>
+                <p className=" font-thin text-sm text-gray-400">Artist</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
+
       {/* end list */}
     </div>
   );
