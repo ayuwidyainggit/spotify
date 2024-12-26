@@ -29,7 +29,6 @@ export async function getServerSideProps() {
 }
 
 export default function Layout({ children, data }) {
-  console.log("Data in Layout:", data);
   return (
     <div className="bg-black  h-screen overflow-hidden">
       <header className=" z-20 bg-black fixed top-0 w-full text-white h-[10%] grid grid-cols-12">
@@ -78,9 +77,9 @@ export default function Layout({ children, data }) {
           <div className="">{children}</div>
         </div>
       </div>
-      <div className=" fixed bottom-0 w-full text-white h-[10%]">
+      {/* <div className=" fixed bottom-0 w-full text-white h-[10%]">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 }
