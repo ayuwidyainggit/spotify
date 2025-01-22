@@ -31,12 +31,13 @@ export async function getServerSideProps() {
 export default function Layout({ children, data }) {
   return (
     <div className="bg-black  h-screen overflow-hidden">
-      <header className=" z-20 bg-black fixed top-0 w-full text-white h-[10%] grid grid-cols-12">
-        <div className="col-span-4 flex p-1 gap-3">
+      <header className=" z-20 bg-black fixed top-0 w-full text-white h-[10%] grid grid-cols-12 ">
+        {/* header web version */}
+        <div className="hidden md:block md:col-span-4 md:flex md:p-1 md:gap-3">
           <BsChevronLeft style={{ width: "28px", height: "28px" }} />
           <BsChevronRight style={{ width: "28px", height: "28px" }} />
         </div>
-        <div className="col-span-4 pt-1  flex gap-2">
+        <div className="hidden md:block md:col-span-4 md:pt-1  md:flex md:gap-2">
           <div
             className="  w-[50px] h-[50px]  rounded-full p-2  flex items-center justify-center "
             style={{ backgroundColor: "rgba(108, 117, 125, 0.5)" }}
@@ -63,9 +64,32 @@ export default function Layout({ children, data }) {
             </div>
           </div>
         </div>
-        <div className="col-span-4 flex justify-end gap-3 items-center pr-3">
+        <div className=" hidden md:block md:col-span-4  md:flex md:justify-end md:gap-3 md:items-center md:pr-3">
           <PiBellSimple style={{ width: "25px", height: "25px" }} />
           <TbUsersGroup style={{ width: "25px", height: "25px" }} />
+          <div className=" bg-pink-400 w-[40px] h-[40px] rounded-full flex justify-center items-center ">
+            <p>A</p>
+          </div>
+        </div>
+
+        {/* header mobile version */}
+        <div className="col-span-2 block md:hidden  flex justify-center items-center">
+          <Link href="/">
+            <GrHomeRounded
+              style={{
+                width: "32px",
+                height: "32px",
+                display: "relative",
+                color: "white",
+              }}
+            />
+          </Link>
+        </div>
+        <div className="col-span-6 block md:hidden "></div>
+        <div className="col-span-2  md:hidden  flex justify-center items-center">
+          <LuSearch style={{ width: "28px", height: "28px" }} />
+        </div>
+        <div className="col-span-2  md:hidden  flex justify-center items-center">
           <div className=" bg-pink-400 w-[40px] h-[40px] rounded-full flex justify-center items-center ">
             <p>A</p>
           </div>
@@ -73,13 +97,13 @@ export default function Layout({ children, data }) {
       </header>
       <div className=" relative grid grid-cols-12  top-[10%] h-[80%]  ">
         <Sidebar data={data} />
-        <div className=" col-span-9 ">
+        <div className=" col-span-12 md:col-span-9 ">
           <div className="">{children}</div>
         </div>
       </div>
-      {/* <div className=" fixed bottom-0 w-full text-white h-[10%]">
+      <div className=" fixed bottom-0 w-full text-white h-[10%]">
         <Footer />
-      </div> */}
+      </div>
     </div>
   );
 }

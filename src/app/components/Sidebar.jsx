@@ -21,103 +21,137 @@ const Sidebar = () => {
 
   return (
     <div
-      className=" col-span-3  text-white p-4 mt-2 h-screen overflow-y-scroll "
+      className="pl-4 md:pl-0 col-span-12  md:col-span-3  md:text-white md:p-4 md:mt-2 md:h-screen md:overflow-y-scroll "
       style={{ backgroundColor: "rgba(64, 64, 64, 0.4)" }}
     >
-      <div className="relative  flex items-center gap-2">
-        <IoLibrarySharp
-          style={{ width: "25px", height: "25px", color: "gray" }}
-        />
-        <p className=" font-semibold text-gray-400">Your Library</p>
-        <div className="absolute right-2 gap-2  flex items-center">
-          <FaPlus style={{ width: "20px", height: "20px", color: "gray" }} />
-          <GrLinkNext
-            style={{ width: "20px", height: "20px", color: "gray" }}
+      {/* web version */}
+      <div className="hidden md:block">
+        <div className="relative  flex items-center gap-2">
+          <IoLibrarySharp
+            style={{ width: "25px", height: "25px", color: "gray" }}
           />
-        </div>
-      </div>
-      <div className=" flex gap-2 mt-4">
-        <div
-          className=" px-3 py-1 rounded-full"
-          style={{ backgroundColor: "rgba(64, 64, 64, 1)" }}
-        >
-          <p className="">Playlist</p>
-        </div>
-        <div
-          className=" px-3 py-1 rounded-full"
-          style={{ backgroundColor: "rgba(64, 64, 64, 1)" }}
-        >
-          <p className="">Artist</p>
-        </div>
-      </div>
-      <div className=" mt-4 flex justify-between">
-        <LuSearch style={{ color: "gray" }} />
-        <div className=" flex gap-2 items-center">
-          <p className="font-thin text-sm text-gray-400">Creator</p>
-          <TfiMenuAlt style={{ color: "gray" }} />
-        </div>
-      </div>
-      <div className="mt-4 flex   hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md">
-        <div className="bg-gradient-to-br from-[#3d07ed] to-[#bebff7] w-[50px] h-[50px] flex justify-center items-center rounded-md">
-          <Image alt="like" src="/heart.png" width={20} height={20} />
-        </div>
-        <div className="ml-4 ">
-          <p>Liked Song</p>
-          <div className=" flex gap-2  ">
-            <BsPinAngleFill style={{ color: "green" }} />
-            <Link href="/playlist">
-              <p className=" text-sm font-thin text-gray-400">
-                Playlist <span>.</span> <span>186 songs</span>
-              </p>
-            </Link>
+          <p className=" font-semibold text-gray-400">Your Library</p>
+          <div className="absolute right-2 gap-2  flex items-center">
+            <FaPlus style={{ width: "20px", height: "20px", color: "gray" }} />
+            <GrLinkNext
+              style={{ width: "20px", height: "20px", color: "gray" }}
+            />
           </div>
         </div>
-      </div>
-      <Link href="/playlist">
-        <div className="mt-4 flex hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md">
+        <div className=" flex gap-2 mt-4">
           <div
-            className=" w-[50px] h-[50px] flex justify-center items-center rounded-md "
-            style={{ backgroundColor: "rgba(64, 64, 64, 0.4)" }}
+            className=" px-3 py-1 rounded-full"
+            style={{ backgroundColor: "rgba(64, 64, 64, 1)" }}
           >
-            <HiMiniMusicalNote />
+            <p className="">Playlist</p>
           </div>
-
-          <div className="ml-4 flex items-center">
-            <p className=" text-sm font-thin text-gray-400">Playlist</p>
+          <div
+            className=" px-3 py-1 rounded-full"
+            style={{ backgroundColor: "rgba(64, 64, 64, 1)" }}
+          >
+            <p className="">Artist</p>
           </div>
         </div>
-      </Link>
-      {/* list  */}
-
-      <div className=" ">
-        {data?.map((data, index) => (
-          <Link href={`/artistDetail/${data.id}`} key={index}>
-            <div
-              key={index}
-              className=" mt-4 flex gap-4 hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md"
-            >
-              <Image
-                alt="artist"
-                src={data.image}
-                width={50}
-                height={50}
-                style={{
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                  width: "50px",
-                  height: "50px",
-                }}
-              />
-              <div className="">
-                <p className=" font-medium">{data.artist}</p>
-                <p className=" font-thin text-sm text-gray-400">Artist</p>
-              </div>
+        <div className=" mt-4 flex justify-between">
+          <LuSearch style={{ color: "gray" }} />
+          <div className=" flex gap-2 items-center">
+            <p className="font-thin text-sm text-gray-400">Creator</p>
+            <TfiMenuAlt style={{ color: "gray" }} />
+          </div>
+        </div>
+        <div className="mt-4 flex   hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md">
+          <div className="bg-gradient-to-br from-[#3d07ed] to-[#bebff7] w-[50px] h-[50px] flex justify-center items-center rounded-md">
+            <Image alt="like" src="/heart.png" width={20} height={20} />
+          </div>
+          <div className="ml-4 ">
+            <p>Liked Song</p>
+            <div className=" flex gap-2  ">
+              <BsPinAngleFill style={{ color: "green" }} />
+              <Link href="/playlist">
+                <p className=" text-sm font-thin text-gray-400">
+                  Playlist <span>.</span> <span>186 songs</span>
+                </p>
+              </Link>
             </div>
-          </Link>
-        ))}
-      </div>
+          </div>
+        </div>
+        <Link href="/playlist">
+          <div className="mt-4 flex hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md">
+            <div
+              className=" w-[50px] h-[50px] flex justify-center items-center rounded-md "
+              style={{ backgroundColor: "rgba(64, 64, 64, 0.4)" }}
+            >
+              <HiMiniMusicalNote />
+            </div>
 
-      {/* end list */}
+            <div className="ml-4 flex items-center">
+              <p className=" text-sm font-thin text-gray-400">Playlist</p>
+            </div>
+          </div>
+        </Link>
+        {/* list  */}
+
+        <div className=" ">
+          {data?.map((data, index) => (
+            <Link href={`/artistDetail/${data.id}`} key={index}>
+              <div
+                key={index}
+                className=" mt-4 flex gap-4 hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md"
+              >
+                <Image
+                  alt="artist"
+                  src={data.image}
+                  width={50}
+                  height={50}
+                  style={{
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    width: "50px",
+                    height: "50px",
+                  }}
+                />
+                <div className="">
+                  <p className=" font-medium">{data.artist}</p>
+                  <p className=" font-thin text-sm text-gray-400">Artist</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* end list */}
+      </div>
+      {/* mobile version */}
+      {/* <div className=" text-white block md:hidden">
+        <div className="">
+          <p className="text-white font-semibold text-2xl">Popular Artist </p>
+        </div>
+        <div className="flex overflow-x-scroll">
+          {data?.map((data, index) => (
+            <Link href={`/artistDetail/${data.id}`} key={index}>
+              <div
+                key={index}
+                className="flex-shrink-0  mt-4  gap-4 hover:bg-opacity-50 hover:bg-zinc-600 p-2 rounded-md"
+                style={{ width: "160px" }}
+              >
+                <Image
+                  alt="artist"
+                  src={data.image}
+                  width={150}
+                  height={150}
+                  style={{
+                    borderRadius: "3%",
+                    objectFit: "cover",
+                    width: "150px",
+                    height: "150px",
+                  }}
+                />
+                <p className=" font-medium text-xl">{data.artist}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div> */}
     </div>
   );
 };

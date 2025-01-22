@@ -107,6 +107,41 @@ export async function GET(request) {
         },
       ],
     },
+    {
+      id: 4,
+      image: "/artist/babymonster.jpg",
+      artist: "Baby Monster",
+      banner: "/artist/banner-babymomster.jpg",
+      music: [
+        {
+          id: 1,
+          image: "/artist/babymonster.jpg",
+          artist: "Baby Monster",
+          album: "DRIP",
+          title: "DRIP",
+          DatedAdd: "2024-12-21T23:00:00",
+          audio: "/audio/BABYMONSTER_DRIP.mp3",
+        },
+        {
+          id: 2,
+          image: "/artist/babymonster.jpg",
+          artist: "Baby Monster",
+          album: "DRIP",
+          title: "Take You To Hell",
+          DatedAdd: "2024-12-21T23:00:00",
+          audio: "/audio/BABYMONSTER-click-clack.mp3",
+        },
+        {
+          id: 3,
+          image: "/artist/babymonster.jpg",
+          artist: "Baby Monster",
+          album: "DRIP",
+          title: "So Am I",
+          DatedAdd: "2024-12-21T23:00:00",
+          audio: "/BABYMONSTER-forever.mp3",
+        },
+      ],
+    },
   ];
 
   // Extract the `id` from the URL

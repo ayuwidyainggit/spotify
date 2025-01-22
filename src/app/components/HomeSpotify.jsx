@@ -7,6 +7,7 @@ import React from "react";
 import { IoIosPlay } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 import Dailymix from "./Dailymix";
+import Artist from "./Artist";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const HomeSpotify = () => {
@@ -15,8 +16,9 @@ const HomeSpotify = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error fetching related artists.</p>;
   return (
-    <div className=" mx-4 h-screen overflow-y-scroll ">
-      <div className=" relative w-[1050px] h-[200px] rounded-md p-2 mt-2">
+    <div className="  mx-4 h-screen overflow-y-hidden md:overflow-y-scroll ">
+      <Artist />
+      <div className=" hidden md:block md:relative md:w-[1050px] md:h-[200px] md:rounded-md md:p-2 md:mt-2">
         <Image
           alt="banner"
           src="/banner.png"
@@ -25,7 +27,7 @@ const HomeSpotify = () => {
           className=" rounded-md"
         />
       </div>
-      <div className="flex mt-4  gap-3">
+      <div className=" hidden md:block md:flex md:mt-4  md:gap-3">
         <div
           className=" py-1 px-3 rounded-full "
           style={{ backgroundColor: "rgba(108, 117, 125, 0.5)" }}
@@ -47,7 +49,7 @@ const HomeSpotify = () => {
           <p className="text-white">Podcast</p>
         </div>
       </div>
-      <div className=" grid grid-cols-12 gap-2 mt-3">
+      <div className="hidden md:grid md:grid-cols-12 md:gap-2 md:mt-3">
         {data?.slice(0, 8).map((data, index) => (
           <div
             key={index}
