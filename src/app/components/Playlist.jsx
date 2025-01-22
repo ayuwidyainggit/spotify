@@ -37,6 +37,31 @@ const Playlist = () => {
     }
   };
 
+  const handleAddMusic2 = async (musicItem) => {
+    const musicArray = [musicItem]; // Wrap the selected item in an array
+
+    console.log("Sending data:", JSON.stringify(musicArray));
+
+    try {
+      const response = await fetch("/api/playmusic", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(musicArray), // Send as an array
+      });
+
+      const result = await response.json();
+      console.log("API response:", result);
+
+      if (response.ok) {
+        mutate("/api/playmusic"); // Revalidate data to reflect changes
+      } else {
+        console.error("Failed to update music:", result.error);
+      }
+    } catch (error) {
+      console.error("Error during fetch:", error);
+    }
+  };
+
   return (
     <div>
       <div className=" w-[50px] h-[50px] bg-green-500 p-2 flex justify-center items-center rounded-full ml-4 my-3">
@@ -72,7 +97,7 @@ const Playlist = () => {
               {data.id}
             </p>
             <div className="text-white hidden group-hover:block  ">
-              <IoIosPlay />
+              <IoIosPlay onClick={() => handleAddMusic2(data)} />
             </div>
           </div>
           <div className=" col-span-4 flex gap-3">

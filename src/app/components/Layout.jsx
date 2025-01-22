@@ -1,3 +1,4 @@
+"use client";
 import { BsChevronLeft } from "react-icons/bs";
 import { BsChevronRight } from "react-icons/bs";
 
@@ -10,6 +11,7 @@ import { TbUsersGroup } from "react-icons/tb";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import Link from "next/link";
+import { useState } from "react";
 
 export async function getServerSideProps() {
   try {
@@ -29,6 +31,23 @@ export async function getServerSideProps() {
 }
 
 export default function Layout({ children, data }) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    if (query && Array.isArray(data)) {
+      const results = data.filter((item) =>
+        item.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredResults(results);
+    } else {
+      setFilteredResults([]);
+    }
+  };
+
   return (
     <div className="bg-black  h-screen overflow-hidden">
       <header className=" z-20 bg-black fixed top-0 w-full text-white h-[10%] grid grid-cols-12 ">
@@ -54,12 +73,18 @@ export default function Layout({ children, data }) {
             </Link>
           </div>
           <div
-            className=" rounded-full w-[5000px] h-[50px] flex items-center px-2 gap-2 relative"
+            className="rounded-full w-[5000px] h-[50px] flex items-center px-2 gap-2 relative"
             style={{ backgroundColor: "rgba(108, 117, 125, 0.5)" }}
           >
             <LuSearch style={{ width: "28px", height: "28px" }} />
-            <p>What do you want to play?</p>
-            <div className="absolute top-3 right-3 border-l border-white pl-2 ">
+            <input
+              type="text"
+              placeholder="What do you want to play?"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="bg-transparent border-none outline-none flex-1 text-white placeholder-gray-300"
+            />
+            <div className="absolute top-3 right-3 border-l border-white pl-2">
               <IoMdBrowsers style={{ width: "28px", height: "28px" }} />
             </div>
           </div>
@@ -99,10 +124,27 @@ export default function Layout({ children, data }) {
         <Sidebar data={data} />
         <div className=" col-span-12 md:col-span-9 ">
           <div className="">{children}</div>
+          {/* Hasil pencarian */}
+          {searchQuery && (
+            <div className="mt-4">
+              <h2 className="text-white mb-2">Search Results:</h2>
+              {filteredResults.length > 0 ? (
+                <ul className="text-white">
+                  {filteredResults.map((item, index) => (
+                    <li key={index} className="mb-2">
+                      {item.name}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-500">No results found.</p>
+              )}
+            </div>
+          )}
         </div>
       </div>
       <div className=" fixed bottom-0 w-full text-white h-[10%]">
-        <Footer />
+        <Footer tracks={data} />
       </div>
     </div>
   );
